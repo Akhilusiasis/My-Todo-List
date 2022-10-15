@@ -11,41 +11,53 @@
     <div id="wrkspace">
         <h2 class="titles">Todo List</h2>
         <input type="text" placeholder="Enter Tasks" id="userTask">
-        <button id="enter" class="buttons">Add Task</button>
+        <button id="enter" class="buttons" onclick="enter()">Add Task</button>
         <p class="titles">Things to do</p>
         <form id="lst">
-            <!-- <p class="lists">
-                <input type="checkbox">Home Work
-            </p>             -->
         </form>
-        <button id="clear" class="buttons">Clear</button>
+        <button id="clear" class="buttons" onclick="clearTasks()">Clear</button>
 
     </div>
     <script>
         var ipt = document.getElementById('userTask');
-        var enter = document.getElementById('enter');
+        // var enter = document.getElementById('enter');
         var form = document.getElementById('lst');
-        var clear = document.getElementById('clear');
+        // var clear = document.getElementById('clear');
 
-        
-        enter.addEventListener('click',function(){
+        function enter(){
             if(ipt.value.length > 0){
                 addTask();
-            }  
-        });
+            } 
+        }
+
+        // enter.addEventListener('click',function(){
+            // if(ipt.value.length > 0){
+            //     addTask();
+            // }
+        // });
+
         ipt.addEventListener('keypress',function(event){
             if(ipt.value.length > 0 && event.which == 13){ //we can use event.keyCode
                 addTask();     
             }  
         });
-        clear.addEventListener('click',function(){
+
+        function clearTasks(){
             listedTasks = document.querySelectorAll('#lst p');
             for(let i = 0; i < listedTasks.length; i++){
                 if(listedTasks[i].firstChild.checked){
                     listedTasks[i].remove();
                 }
-            }
-        });
+            }   
+        }
+        // clear.addEventListener('click',function(){
+        //     listedTasks = document.querySelectorAll('#lst p');
+        //     for(let i = 0; i < listedTasks.length; i++){
+        //         if(listedTasks[i].firstChild.checked){
+        //             listedTasks[i].remove();
+        //         }
+        //     }
+        // });
         function addTask(){
             var newTask = document.createElement('p');
             var x = document.createElement('input');
