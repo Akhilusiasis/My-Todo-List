@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>To List</title>
+</head>
+<body>
+    <div id="wrkspace">
+        <h2 class="titles">Todo List</h2>
+        <input type="text" placeholder="Enter Tasks" id="userTask">
+        <button id="enter" class="buttons">Add Task</button>
+        <p class="titles">Things to do</p>
+        <form id="lst">
+            <!-- <p class="lists">
+                <input type="checkbox">Home Work
+            </p>             -->
+        </form>
+        <button id="clear" class="buttons">Clear</button>
+
+    </div>
+    <script>
+        var ipt = document.getElementById('userTask');
+        var enter = document.getElementById('enter');
+        var form = document.getElementById('lst');
+        var clear = document.getElementById('clear');
+
+        
+        enter.addEventListener('click',function(){
+            if(ipt.value.length > 0){
+                addTask();
+            }  
+        });
+        ipt.addEventListener('keypress',function(event){
+            if(ipt.value.length > 0 && event.which == 13){ //we can use event.keyCode
+                addTask();     
+            }  
+        });
+        clear.addEventListener('click',function(){
+            listedTasks = document.querySelectorAll('#lst p');
+            for(let i = 0; i < listedTasks.length; i++){
+                if(listedTasks[i].firstChild.checked){
+                    listedTasks[i].remove();
+                }
+            }
+        });
+        function addTask(){
+            var newTask = document.createElement('p');
+            var x = document.createElement('input');
+            var y = document.createTextNode(ipt.value);
+            x.type = 'checkbox';
+            newTask.appendChild(x);
+            newTask.appendChild(y);
+            form.appendChild(newTask);
+            ipt.value = '';
+        }
+    </script>
+</body>
+</html>
